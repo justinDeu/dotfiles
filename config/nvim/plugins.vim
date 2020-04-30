@@ -35,5 +35,8 @@ Plug 'wakatime/vim-wakatime'
 " Git Gutter
 Plug  'airblade/vim-gitgutter'
 
+" FZF - Fuzzy File Searching
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
