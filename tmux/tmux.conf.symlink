@@ -22,11 +22,20 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+# Pane Resizing
+bind -r H resize-pane -L 10
+bind -r J resize-pane -D 10
+bind -r K resize-pane -U 10
+bind -r L resize-pane -R 10
+
 ###################### VISUALS
 
 # start indexing at 1
 set -g base-index 1
 setw -g pane-base-index 1
+
+# renumber windows
+set-option -g renumber-windows on
 
 
 
@@ -59,3 +68,8 @@ setw -g window-status-bell-fg colour255
 setw -g window-status-bell-bg colour1
 
 
+###################### PLUGINS
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'odedlaz/tmux-onedark-theme'
+
+run -b '~/.tmux/plugins/tpm/tpm'
