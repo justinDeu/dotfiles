@@ -64,6 +64,12 @@ nmap <leader>w :w<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+"split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 """" FZF
 "Activate FZF search
 nmap <leader>f :FZF<cr>
