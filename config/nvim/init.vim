@@ -53,7 +53,7 @@ set showmatch                       "show matching brackets
 " ==================================================================== "
 " ===                       Key-Bindings                           === "
 " ==================================================================== "
-let mapleader = ','                 "changes leader to comma
+let mapleader = "\<Space>"                 "changes leader to comma
 
 "Maps 'jk' to <Esc> (can't be after the remap or causes errors)
 inoremap jk <Esc>                   
