@@ -56,7 +56,7 @@ set showmatch                       "show matching brackets
 let mapleader = "\<Space>"                 "changes leader to comma
 
 "Maps 'jk' to <Esc> (can't be after the remap or causes errors)
-inoremap jk <Esc>                   
+inoremap jk <Esc>
 
 """" Normal Mode 
 "colon replacements
