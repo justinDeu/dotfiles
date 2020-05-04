@@ -7,6 +7,8 @@ source ~/.config/nvim/coc.vim
 " ==================================================================== "
 " ===                       Editing Options                        === "
 " ==================================================================== "
+filetype on                         "turn on filetype detection
+filetype plugin on                  "look for plugins for filetpye
 filetype indent on                  "recognize indenting for filetype
 
 """" Tab/indenting
