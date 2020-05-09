@@ -1,0 +1,13 @@
+# Setting various environment variables
+# sourced on startup unless -f flag specified
+
+export DOTFILES=$HOME/.dotfiles
+
+fpath=(
+    $DOTFILES/zsh/functions
+    /usr/local/share/zsh/site-functions
+    $fpath
+)
+
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
