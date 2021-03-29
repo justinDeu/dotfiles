@@ -12,5 +12,5 @@ vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', {noremap = true, silent = true})
 
 -- better tabbing in visual mode
-vim.api.nvim_set_keymap('v', '<', ':<gv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '>', ':>gv', {noremap = true, silent = true})
+--vim.api.nvim_set_keymap('v', '<', ':<gv', {noremap = true, silent = true})
+--vim.api.nvim_set_keymap('v', '>', ':>gv', {noremap = true, silent = true})
