@@ -25,4 +25,9 @@ return require('packer').startup(function(use)
     -- Color Theme
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'sheerun/vim-polyglot'
+    use { 'sonph/onehalf', rtp='vim' }
+    use 'sainnhe/sonokai'
+
+    -- Treesitter
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 end)
