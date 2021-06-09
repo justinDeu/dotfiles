@@ -4,7 +4,9 @@ vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
 
 vim.wo.number = true
 
-vim.o.t_Co = "256"
+vim.go.termguicolors = true
+vim.go.t_Co = "256"
+vim.go.t_ut = ""
 
 -- LINE SETTINGS
 vim.wo.wrap = false

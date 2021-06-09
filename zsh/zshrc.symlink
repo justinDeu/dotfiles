@@ -50,6 +50,9 @@ alias gs='git status'
 alias gc='git commit'
 alias gp='git push'
 
+# Kitty ssh alias
+alias ssh='kitty +kitten ssh'
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/justin/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
