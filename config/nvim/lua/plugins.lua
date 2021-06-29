@@ -30,4 +30,14 @@ return require('packer').startup(function(use)
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+    -- Nvim-Tree
+    use {"kyazdani42/nvim-tree.lua"}
+    use {"ahmedkhalf/lsp-rooter.nvim"}
+
+    -- Fix my whitespaces
+    use {"ntpeters/vim-better-whitespace"}
+
+    -- Black python formatter
+    use {"psf/black"}
 end)

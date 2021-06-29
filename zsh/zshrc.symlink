@@ -1,6 +1,19 @@
 # Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# fix large git repo slow down --- TEMPORARY, NEEDS MOVING
+# run `git config --add oh-my-zsh.hide-dirty 1` in repo to mark
+function git_prompt_info() {
+  local ref
+  if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]; then
+    if [[ "$(__git_prompt_git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
+      ref=$(__git_prompt_git symbolic-ref HEAD 2> /dev/null) || \
+      ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return 0
+      echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    fi
+  fi
+}
+
 
 # loading functions from $DOTFILES/zsh/functions
 if [[ -d $DOTFILES/zsh/functions ]]; then
@@ -46,12 +59,20 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # Git aliases
+alias ga='git add'
 alias gs='git status'
 alias gc='git commit'
 alias gp='git push'
+alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset)%C(auto)%d%C(reset)%C(normal)%s%C(reset)%C(dim white)%an %C(reset)%C(dim blue)(%ar)%C(reset)' --all"
 
 # Kitty ssh alias
 alias ssh='kitty +kitten ssh'
+
+# Make python python3
+alias python=python3
+
+# Mark repo dirty
+alias mark-dirty='git config --add oh-my-zsh.hide-dirty 1'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -4,7 +4,7 @@ vim.g.mapleader = ' '
 
 -- use simpler escape combinations
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = true})
-vim.api.nvim_set_keymap('i', 'kj', '<Esc>', {noremap = true})
+--vim.api.nvim_set_keymap('i', 'kj', '<Esc>', {noremap = true})
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', {noremap = true})
 
 -- map leader w/q to write and quit
@@ -26,3 +26,6 @@ vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -2<CR>', {noremap = true, silent
 vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {noremap = true, silent = true});
 vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {noremap = true, silent = true});
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {noremap = true, silent = true});
+
+-- nvim-tree keybindings
+vim.api.nvim_set_keymap('n', '<C-Space>', ':NvimTreeToggle<CR>', {noremap = true, silent = true});

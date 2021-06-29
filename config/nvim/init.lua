@@ -6,6 +6,7 @@ require('settings')
 -- Plugins
 require('nv-compe')
 require('nv-lspinstall')
+require('nv-nvimtree')
 
 -- LSP
 require('lsp')
