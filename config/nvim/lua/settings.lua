@@ -11,7 +11,7 @@ vim.go.t_ut = ""
 -- LINE SETTINGS
 vim.wo.wrap = false
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 vim.wo.cursorline = true
 
 -- always show sign column
