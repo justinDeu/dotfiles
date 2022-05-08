@@ -5,9 +5,11 @@ require('settings')
 
 -- Plugins
 require('nv-compe')
-require('nv-lspinstall')
+require('nv-telescope')
 
 -- LSP
 require('lsp')
 require('lsp.python-ls')
 require('lsp.lua-ls')
+
+require('treesitter')

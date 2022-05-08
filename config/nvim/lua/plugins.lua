@@ -11,12 +11,37 @@ end
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function(use)
+    -- Packer manages itself
+    use 'wbthomason/packer.nvim'
+
+    -- Code Activity Tracking
+    use 'wakatime/vim-wakatime'
+
     -- LSP
-    use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
-    use 'kosayoda/nvim-lightbulb'
-    use 'kabouzeid/nvim-lspinstall'
+    use {'williamboman/nvim-lsp-installer',
+        requires = "neovim/nvim-lspconfig",
+        {
+            "neovim/nvim-lspconfig",
+            config = function()
+                require("nvim-lsp-installer").setup {}
+                local lspconfig = require("lspconfig")
+                lspconfig.sumneko_lua.setup {}
+            end
+        }
+    }
+    use 'neovim/nvim-lspconfig'
+
+    -- Telescope
+    use {"nvim-lua/popup.nvim"}
+    use {"nvim-lua/plenary.nvim"}
+    use {"nvim-telescope/telescope.nvim"}
+    use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}
+    use {"nvim-telescope/telescope-project.nvim"}
+    use {"folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons"
+    }
 
     -- Auto complete
     use 'hrsh7th/nvim-compe'
