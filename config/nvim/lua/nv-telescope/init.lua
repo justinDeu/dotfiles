@@ -43,7 +43,8 @@ require('telescope').setup {
                 ["<C-c>"] = actions.close,
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
-                ["<c-t>"] = trouble.open_with_trouble,
+                -- I don't use trouble yet but leverage tabs a lot, <C-t> defaults to open in new tab
+                --["<c-t>"] = trouble.open_with_trouble,
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 -- To disable a keymap, put [map] = false
                 -- So, to not map "<C-n>", just put

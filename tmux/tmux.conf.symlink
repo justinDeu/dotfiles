@@ -34,6 +34,9 @@ bind -r L resize-pane -R 10
 set -g base-index 1
 setw -g pane-base-index 1
 
+# set mouse on
+set -g mouse on
+
 # renumber windows
 set-option -g renumber-windows on
 

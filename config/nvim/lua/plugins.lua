@@ -39,8 +39,16 @@ return require('packer').startup(function(use)
     use {"nvim-telescope/telescope.nvim"}
     use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}
     use {"nvim-telescope/telescope-project.nvim"}
-    use {"folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons"
+    use {
+        "folke/trouble.nvim",
+          requires = "kyazdani42/nvim-web-devicons",
+          config = function()
+            require("trouble").setup {
+              -- your configuration comes here
+              -- or leave it empty to use the default settings
+              -- refer to the configuration section below
+            }
+          end
     }
 
     -- Auto complete
@@ -57,8 +65,13 @@ return require('packer').startup(function(use)
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
     -- Nvim-Tree
-    use {"kyazdani42/nvim-tree.lua"}
-    use {"ahmedkhalf/lsp-rooter.nvim"}
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      },
+      tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
 
     -- Fix my whitespaces
     use {"ntpeters/vim-better-whitespace"}

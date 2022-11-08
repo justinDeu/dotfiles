@@ -29,3 +29,7 @@ vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {noremap = 
 
 -- nvim-tree keybindings
 vim.api.nvim_set_keymap('n', '<C-Space>', ':NvimTreeToggle<CR>', {noremap = true, silent = true});
+
+-- telescope shortcuts
+vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', {noremap = true, silent = true});
+vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<CR>', {noremap = true, silent = true});

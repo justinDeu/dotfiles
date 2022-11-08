@@ -10,3 +10,17 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {"python"},
+
+    hightlight = {
+        enable = true,
+    },
+
+    --[[ This is only experimental and currently causing indentation issues in python
+    indent = {
+        enable = true,
+    }
+    --]]
+}
