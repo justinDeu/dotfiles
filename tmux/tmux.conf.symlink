@@ -53,5 +53,7 @@ set -g status-position bottom
 ###################### PLUGINS
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'odedlaz/tmux-onedark-theme'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
 
 run -b '~/.tmux/plugins/tpm/tpm'
