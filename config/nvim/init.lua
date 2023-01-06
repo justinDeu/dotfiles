@@ -1,16 +1,2 @@
-require('globals')
+require('core')
 require('plugins')
-require('keymappings')
-require('settings')
-
--- Plugins
-require('nv-compe')
-require('nv-telescope')
-require('nv-nvimtree')
-
--- LSP
-require('lsp')
-require('lsp.python-ls')
-require('lsp.lua-ls')
-
-require('treesitter')

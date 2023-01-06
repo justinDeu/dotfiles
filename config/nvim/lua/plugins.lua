@@ -1,81 +1,49 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
+-- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-    execute 'packadd packer.nvim'
-end
-
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+-- Only required if you have packer configured as `opt`
+vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-    -- Packer manages itself
-    use 'wbthomason/packer.nvim'
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
 
-    -- Code Activity Tracking
-    use 'wakatime/vim-wakatime'
+  use {
+	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	  -- or                            , branch = '0.1.x',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+  }
 
-    -- LSP
-    use 'glepnir/lspsaga.nvim'
-    use 'onsails/lspkind-nvim'
-    use {'williamboman/nvim-lsp-installer',
-        requires = "neovim/nvim-lspconfig",
-        {
-            "neovim/nvim-lspconfig",
-            config = function()
-                require("nvim-lsp-installer").setup {}
-                local lspconfig = require("lspconfig")
-                lspconfig.sumneko_lua.setup {}
-            end
-        }
-    }
-    use 'neovim/nvim-lspconfig'
+  use('sainnhe/sonokai')
 
-    -- Telescope
-    use {"nvim-lua/popup.nvim"}
-    use {"nvim-lua/plenary.nvim"}
-    use {"nvim-telescope/telescope.nvim"}
-    use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}
-    use {"nvim-telescope/telescope-project.nvim"}
-    use {
-        "folke/trouble.nvim",
-          requires = "kyazdani42/nvim-web-devicons",
-          config = function()
-            require("trouble").setup {
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-            }
-          end
-    }
+  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use('nvim-treesitter/playground')
+  use('theprimeagen/harpoon')
+  use('mbbill/undotree')
+  use('tpope/vim-fugitive')
 
-    -- Auto complete
-    use 'hrsh7th/nvim-compe'
-    use 'hrsh7th/vim-vsnip'
+  use {
+	  'VonHeikemen/lsp-zero.nvim',
+	  requires = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
 
-    -- Color Theme
-    use 'christianchiarulli/nvcode-color-schemes.vim'
-    use 'sheerun/vim-polyglot'
-    use { 'sonph/onehalf', rtp='vim' }
-    use 'sainnhe/sonokai'
+		  -- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
 
-    -- Treesitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
+		  {'rafamadriz/friendly-snippets'},
+	  }
+  }
 
-    -- Nvim-Tree
-    use {
-      'nvim-tree/nvim-tree.lua',
-      requires = {
-        'nvim-tree/nvim-web-devicons', -- optional, for file icons
-      },
-      tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
+  use("folke/zen-mode.nvim")
+  use("github/copilot.vim")
 
-    -- Fix my whitespaces
-    use {"ntpeters/vim-better-whitespace"}
-
-    -- Black python formatter
-    use {"psf/black"}
 end)
