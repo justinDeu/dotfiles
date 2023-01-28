@@ -20,7 +20,7 @@ lalt - space : yabai -m window --toggle float; sketchybar --trigger window_focus
 # Make window zoom to fullscreen: shift + lalt - f
 shift + lalt - f : yabai -m window --toggle zoom-fullscreen; sketchybar --trigger window_focus
 
-# Make window zoom to parent node: lalt - f 
+# Make window zoom to parent node: lalt - f
 lalt - f : yabai -m window --toggle zoom-parent; sketchybar --trigger window_focus
 
 ## Window Movement (shift + lalt - ...)
@@ -82,7 +82,7 @@ ctrl + lalt - e : yabai -m space --balance
 ctrl + lalt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # Enable / Disable gaps in current workspace: ctrl + lalt - g
-ctrl + lalt - b : yabai -m config window_border off 
+ctrl + lalt - b : yabai -m config window_border off
 shift + ctrl + lalt - b : yabai -m config window_border on
 
 ## Insertion (shift + ctrl + lalt - ...)
