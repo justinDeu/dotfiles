@@ -1,22 +1,22 @@
-###################### PREFIX SETTINGS 
+###################### PREFIX SETTINGS
 
 unbind C-b                  # Removes the standard Ctrl-B keybind
 set -g prefix C-a             # Sets the new command prefix to `
 bind-key a last-window      # Binds ` to switch to the previous window making it ``
 bind-key C-a send-prefix      # Allows typing of ` with the combination of `e
 
-######################  KEY BINDINGS 
+######################  KEY BINDINGS
 
 # Source config again
 bind r source-file ~/.tmux.conf
 
-# Rebinding splits to something sane 
-bind | split-window -h    
+# Rebinding splits to something sane
+bind | split-window -h
 bind - split-window -v
 unbind '"'
 unbind %
 
-# Pane switching 
+# Pane switching
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
@@ -43,7 +43,7 @@ set-option -g renumber-windows on
 # changing onedark theme settings
 set -g @onedark_date_format "%D"
 
-###################### STUFF I DIDN'T DO AND NEEDS EDITING 
+###################### STUFF I DIDN'T DO AND NEEDS EDITING
 # Color the prompt
 set -g default-terminal "screen-256color"
 
