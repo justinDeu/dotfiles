@@ -6,8 +6,15 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, defaultPP, wrap, pad, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.ManageDocks
+
+-- Layout Imports
 import XMonad.Layout.NoBorders(smartBorders)
 import XMonad.Layout.Spacing
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Tabbed
+import XMonad.Layout.TwoPane
+import XMonad.Layout.Circle
+import XMonad.Layout.Grid
 
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (spawnPipe)
@@ -18,17 +25,26 @@ import System.IO(hPutStrLn)
 -- VARIABLES
 myTerminal = "kitty" -- default terminal
 myFocusFollowsMouse = True
-myBorderWidth = 0
+myBorderWidth = 1
 myModMask = mod1Mask -- set mod key to Alt
 
 myWorkspaces = ["</>", "www", "msg", "home", "5", "6"]
 myNormalBorderColor = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#878787"
 windowCount     = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- Startup Hook
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
+
+-- Defining my layouts
+myLayoutHook =
+    (TwoPane (3/100) (1/2)
+    ||| ThreeCol 1 (3/100) (1/2)
+    ||| Grid
+    ||| Full
+    ||| simpleTabbed
+    ||| Circle )
 
 main = do
     xmproc0 <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
@@ -45,7 +61,7 @@ main = do
           startupHook = myStartupHook,
 
           manageHook = manageDocks <+> manageHook defaultConfig,
-          layoutHook = smartBorders (avoidStruts $ spacing 5 $ layoutHook defaultConfig),
+          layoutHook = avoidStruts $ smartBorders $ spacing 5 $ myLayoutHook,
           handleEventHook = handleEventHook defaultConfig <+> docksEventHook,
           logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x -- >> hPutStrLn xmproc1 x
