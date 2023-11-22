@@ -2,12 +2,12 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'lua_ls',
-  'rust_analyzer',
-  'pyright',
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {'lua_ls', 'rust_analyzer', 'pyright'},
+  handlers = {
+    lsp.default_setup,
+  },
 })
 
 -- Fix Undefined global 'vim'
@@ -24,24 +24,28 @@ lsp.configure('lua_ls', {
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
-})
+local cmp_action = lsp.cmp_action()
 
--- disable completion with tab
--- this helps with copilot setup
--- cmp_mappings['<Tab>'] = nil
--- cmp_mappings['<S-Tab>'] = nil
+cmp.setup({
+   mapping = cmp.mapping.preset.insert({
+      ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+      ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<Tab>'] = cmp_action.tab_complete(),
+      ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+    }),
+    sources = cmp.config.sources({
+        {name = 'path'},
+        {name = 'nvim_lsp'},
+        {name = 'buffer'},
+        {name = 'luasnip'},
+        {name = 'nvim_lua'},
 
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings,
-  preselect = require('cmp').PreselectMode.None,
-  completion = {
-    completeopt = 'menu,menuone,noinsert,noselect'
-  }
+    }),
 })
 
 lsp.set_preferences({
