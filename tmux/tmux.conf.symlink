@@ -45,7 +45,9 @@ set -g @onedark_date_format "%D"
 
 ###################### STUFF I DIDN'T DO AND NEEDS EDITING
 # Color the prompt
-set -g default-terminal "screen-256color"
+# set -g default-terminal "screen-256color"
+set -as terminal-features ",*:RGB"
+set -ag terminal-overrides ",xterm-256color:RGB"
 
 # Changing various display settings and adjusting the tabs on the bottom
 set -g status-position bottom
