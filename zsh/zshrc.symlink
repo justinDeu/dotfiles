@@ -22,7 +22,8 @@ fi
 
 # adding portions to path
 prepend_path $DOTFILES/bin
-prepend_path $HOME/bin
+prepend_path $HOME/.local/bin
+prepend_path /usr/local/texlive/2024/bin/x86_64-linux
 
 # History settings
 HISTFILE=~/.zsh_history
@@ -71,8 +72,16 @@ alias ssh='kitty +kitten ssh'
 # Make python python3
 alias python=python3
 
+# neovim Aliases
+alias vim=nvim
+alias v=nvim
+
 # Mark repo dirty
 alias mark-dirty='git config --add oh-my-zsh.hide-dirty 1'
+
+# initialize fzf and zoxide
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

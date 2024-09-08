@@ -21,6 +21,6 @@ return {
           },
         })
 
-        vim.keymap.set("n", "<C-Space>", ":NvimTreeToggle<CR>")
+        --vim.keymap.set("n", "<C-Space>", ":NvimTreeToggle<CR>")
     end
 }

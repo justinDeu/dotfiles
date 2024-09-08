@@ -1,9 +1,12 @@
 return {
     {
-        'olimorris/onedarkpro.nvim',
+        "navarasu/onedark.nvim",
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme onedark")
+            require('onedark').setup {
+                style = 'warmer'
+            }
+            require('onedark').load()
         end
     },
     {
@@ -13,7 +16,7 @@ return {
             require('lualine').setup({
               options = {
                 icons_enabled = true,
-                theme = 'auto',
+                theme = 'onedark',
                 component_separators = { left = '', right = ''},
                 section_separators = { left = '', right = ''},
                 disabled_filetypes = {

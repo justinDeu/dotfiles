@@ -13,6 +13,7 @@ return {{
               workspaces = {
                 notes = "~/notes",
                 school = "~/omscs",
+                life = "~/life",
               },
             },
           },

@@ -27,9 +27,9 @@ return {
 
             lsp.preset("recommended")
 
-            require('mason').setup({})
+            require('mason').setup({PATH="append"})
             require('mason-lspconfig').setup({
-              ensure_installed = {'lua_ls', 'rust_analyzer', 'pyright'},
+              ensure_installed = {'lua_ls'},
               handlers = {
                 lsp.default_setup,
               },
@@ -37,10 +37,48 @@ return {
 
             local cmp = require('cmp')
             local lspkind = require('lspkind')
+            local lspconfig = require('lspconfig')
             local cmp_select = {behavior = cmp.SelectBehavior.Select}
             local cmp_action = lsp.cmp_action()
 
-            lspkind.init({})
+            lspconfig.pylsp.setup{
+              settings = {
+                pylsp = {
+                  plugins = {
+                    pycodestyle = {
+                      maxLineLength = 120
+                    },
+                    ruff = {
+                      enabled = true,  -- Enable the plugin
+                      formatEnabled = true,  -- Enable formatting using ruffs formatter
+                      extendSelect = { "I" },  -- Rules that are additionally used by ruff
+                      extendIgnore = { "C90" },  -- Rules that are additionally ignored by ruff
+                      format = { "I" },  -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
+                      severities = { ["D212"] = "I" },  -- Optional table of rules where a custom severity is desired
+                      unsafeFixes = false,  -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
+
+                      -- Rules that are ignored when a pyproject.toml or ruff.toml is present:
+                      lineLength = 120,  -- Line length to pass to ruff checking and formatting
+                      select = { "F" },  -- Rules to be enabled by ruff
+                      ignore = { "D210" },  -- Rules to be ignored by ruff
+                      perFileIgnores = { ["__init__.py"] = "CPY001" },  -- Rules that should be ignored for specific files
+                      targetVersion = "py310",  -- The minimum python version to target (applies for both linting and formatting).
+                    },
+                  }
+                }
+              }
+            }
+
+            lspconfig.texlab.setup{
+                settings = {
+                    texlab = {
+                        build = {
+                            executable = "pdflatex",
+                            onSave = true,
+                        }
+                    }
+                }
+            }
 
             cmp.setup({
                snippet = {
@@ -49,7 +87,7 @@ return {
                  end,
                },
                formatting = {
-                   format = lspkind.cmp_format({})
+                   format = lspkind.cmp_format({mode="symbol_text"})
                },
                mapping = cmp.mapping.preset.insert({
                   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -97,12 +135,12 @@ return {
               vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
               vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
               vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-              vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+              vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
               vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
               vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-              vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-              vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-              vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+              vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+              vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
+              vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
               vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
               vim.keymap.set({'n', 'x'}, '<leader>f', function()
                 vim.lsp.buf.format({async = false, timeout_ms = 10000})
@@ -116,7 +154,8 @@ return {
               },
               servers = {
                 ['tsserver'] = {'javascript', 'typescript'},
-                ['rust_analyzer'] = {'rust'},
+                ['rust-analyzer'] = {'rust'},
+                ['ruff_lsp'] = {'python'},
               }
             })
 
