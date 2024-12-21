@@ -35,3 +35,5 @@ vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
 -- SANE SPLITTING DIRECTIONS
 vim.o.splitbelow = true
 vim.o.splitright = true
+
+vim.o.clipboard = "unnamedplus"
